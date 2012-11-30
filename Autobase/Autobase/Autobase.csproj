@@ -59,11 +59,11 @@
     <Compile Include="AboutProgram.Designer.cs">
       <DependentUpon>AboutProgram.cs</DependentUpon>
     </Compile>
-    <Compile Include="InsertData.cs">
+    <Compile Include="ModifyData.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InsertData.Designer.cs">
-      <DependentUpon>InsertData.cs</DependentUpon>
+    <Compile Include="ModifyData.Designer.cs">
+      <DependentUpon>ModifyData.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
@@ -82,8 +82,8 @@
     <EmbeddedResource Include="AboutProgram.resx">
       <DependentUpon>AboutProgram.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InsertData.resx">
-      <DependentUpon>InsertData.cs</DependentUpon>
+    <EmbeddedResource Include="ModifyData.resx">
+      <DependentUpon>ModifyData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoadForm.resx">
       <DependentUpon>LoadForm.cs</DependentUpon>

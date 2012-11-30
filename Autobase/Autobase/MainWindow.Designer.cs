@@ -33,6 +33,9 @@
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вихідToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.операціїToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.персоналToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.автомобіліToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.комплектуючіToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.довідкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -80,15 +83,40 @@
             // 
             // операціїToolStripMenuItem
             // 
+            this.операціїToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.персоналToolStripMenuItem,
+            this.автомобіліToolStripMenuItem,
+            this.комплектуючіToolStripMenuItem});
             this.операціїToolStripMenuItem.Name = "операціїToolStripMenuItem";
-            this.операціїToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.операціїToolStripMenuItem.Text = "Операції";
+            this.операціїToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
+            this.операціїToolStripMenuItem.Text = "Довідники";
+            // 
+            // персоналToolStripMenuItem
+            // 
+            this.персоналToolStripMenuItem.Name = "персоналToolStripMenuItem";
+            this.персоналToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.персоналToolStripMenuItem.Text = "Персонал";
+            this.персоналToolStripMenuItem.Click += new System.EventHandler(this.персоналToolStripMenuItem_Click);
+            // 
+            // автомобіліToolStripMenuItem
+            // 
+            this.автомобіліToolStripMenuItem.Name = "автомобіліToolStripMenuItem";
+            this.автомобіліToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.автомобіліToolStripMenuItem.Text = "Автомобілі";
+            this.автомобіліToolStripMenuItem.Click += new System.EventHandler(this.автомобіліToolStripMenuItem_Click);
+            // 
+            // комплектуючіToolStripMenuItem
+            // 
+            this.комплектуючіToolStripMenuItem.Name = "комплектуючіToolStripMenuItem";
+            this.комплектуючіToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.комплектуючіToolStripMenuItem.Text = "Комплектуючі";
+            this.комплектуючіToolStripMenuItem.Click += new System.EventHandler(this.комплектуючіToolStripMenuItem_Click);
             // 
             // довідкаToolStripMenuItem
             // 
             this.довідкаToolStripMenuItem.Name = "довідкаToolStripMenuItem";
-            this.довідкаToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.довідкаToolStripMenuItem.Text = "Довідка";
+            this.довідкаToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
+            this.довідкаToolStripMenuItem.Text = "Про програму";
             this.довідкаToolStripMenuItem.Click += new System.EventHandler(this.довідкаToolStripMenuItem_Click);
             // 
             // button2
@@ -166,6 +194,9 @@
         private System.Windows.Forms.Button button4;
         public System.Windows.Forms.ComboBox comboBox1;
         public System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ToolStripMenuItem персоналToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem автомобіліToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem комплектуючіToolStripMenuItem;
     }
 }
 

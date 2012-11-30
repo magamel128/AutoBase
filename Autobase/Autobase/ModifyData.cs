@@ -10,9 +10,9 @@ using System.Data.SQLite;
 
 namespace WindowsFormsApplication1
 {
-    public partial class InsertData : Form
+    public partial class ModifyData : Form
     {
-        public InsertData()
+        public ModifyData()
         {
             InitializeComponent();
         }
@@ -20,50 +20,43 @@ namespace WindowsFormsApplication1
         public MainWindow fm;
         public int operate;
         public string id="";
-
+        public string table_name="";
+        
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
         }
 
-        bool renew_data(string commandText)
+        void closewindow()
         {
-            bool flag = false;
-            using (fm.connect = new SQLiteConnection("Data source=autobase.db"))
-            {
-                fm.connect.Open();
-                SQLiteCommand command = new SQLiteCommand(fm.connect);
-                command.CommandText = commandText; 
-                command.ExecuteNonQuery();
-                fm.ds = new DataSet();
-                fm.da = new SQLiteDataAdapter("SELECT * FROM personal", fm.connect);
-                fm.da.Fill(fm.ds);
-                fm.connect.Close();
-                flag = true;
-            }
-            return flag;
+            panel1.Visible = false;
+            panel1.Enabled = false;
+            panel2.Visible = false;
+            panel2.Enabled = false;
+            this.Close();
         }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
             string op = "";
             string mess = "";
+            MessageBox.Show(table_name);
             if (operate==1)
             {
-                op = "INSERT INTO 'personal' ('pib', 'position','birth', 'date_work', 'telephon','salary') VALUES ('" + textBox1.Text +
+                op = "INSERT INTO '"+ table_name+"' ('pib', 'position','birth', 'date_work', 'telephon','salary') VALUES ('" + textBox1.Text +
                  "','" + textBox2.Text + "','" + dateTimePicker1.Text + "','" + dateTimePicker2.Text + "','" + textBox3.Text +
                  "','" + numericUpDown1.Value + "');";
                 mess="Інформація успішно занесена";
             }
             if (operate==2)
             {
-                op = "UPDATE 'personal' set pib='" + textBox1.Text + "', position='"+textBox2.Text+"', birth='"+dateTimePicker1.Text+"', date_work='"+dateTimePicker2.Text+
+                op = "UPDATE '"+table_name+"' set pib='" + textBox1.Text + "', position='"+textBox2.Text+"', birth='"+dateTimePicker1.Text+"', date_work='"+dateTimePicker2.Text+
                     "', telephon='"+textBox3.Text +"', salary='"+numericUpDown1.Value+"' WHERE id="+id;
                 mess ="Інформація успішно обновлена";
             }
-            if (renew_data(op) == true) { MessageBox.Show(mess); }
+            if (fm.db.ExecuteCommand(op) == true && fm.db.renew_table(table_name) == true) { MessageBox.Show(mess); }
             else MessageBox.Show("Помилка при виконанні операції");
-            this.Close();
+            closewindow();           
         }
     }
 }
