@@ -40,7 +40,6 @@ namespace WindowsFormsApplication1
         {
             string op = "";
             string mess = "";
-            MessageBox.Show(table_name);
             if (operate==1)
             {
                 op = "INSERT INTO '"+ table_name+"' ('pib', 'position','birth', 'date_work', 'telephon','salary') VALUES ('" + textBox1.Text +

@@ -22,12 +22,8 @@ namespace WindowsFormsApplication1
         }
 
         public Work_DB db;
+        int active_table = 0;
           
-        private void button1_Click(object sender, EventArgs e)
-        {
-           // dataGridView1.DataSource = ds.Tables[0];           
-        }
-
         private void вихідToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -42,13 +38,14 @@ namespace WindowsFormsApplication1
         private void button2_Click(object sender, EventArgs e)
         {
             ModifyData ins_data = new ModifyData();
+            ins_data.Size=new System.Drawing.Size(485,355);
             ins_data.panel1.Visible = true;
             ins_data.panel1.Enabled = true;
             ins_data.Text = "Внесення інформації про працівника";
             ins_data.fm = this;
             ins_data.operate=1;
-            ins_data.ShowDialog();           
-            dataGridView1.DataSource = db.ds.Tables["personal"];
+            ins_data.table_name = "personal";
+            ins_data.ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -59,18 +56,14 @@ namespace WindowsFormsApplication1
                 return;
             }
             string index = dataGridView1.SelectedRows[0].Cells["id"].Value.ToString();
-            string command = "DELETE FROM personal WHERE id='" + index + "';";
-            string table_name = "personal";
-            if (db.ExecuteCommand(command) == true && db.renew_table(table_name) == true)
+            string table_name = db.ds.Tables[active_table].TableName;
+            if (db.DeleteRec(table_name, index) == true)
             {
                 MessageBox.Show("Дані видалені успішно");
             }
-            else { MessageBox.Show("Помилка при виконанні операції"); }           
-        }
-
-        void pre_mod_personal()
-        {
-
+            else { MessageBox.Show("Помилка при виконанні операції"); }
+            listView1.Items.Add("Здійснено видалення запису з таблиці" + table_name);
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -95,8 +88,6 @@ namespace WindowsFormsApplication1
                     ins_data.dateTimePicker1.Value = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells["birth"].Value);
                     ins_data.dateTimePicker2.Value = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells["date_work"].Value);
                     ins_data.ShowDialog();
-                    dataGridView1 = new DataGridView();
-                    dataGridView1.DataSource = db.ds.Tables["personal"];
                  }
                 catch (Exception ex) { MessageBox.Show("Сталась помилка"+ex.ToString()); }
             }
@@ -110,6 +101,7 @@ namespace WindowsFormsApplication1
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             dataGridView1.DataSource = db.ds.Tables[comboBox1.SelectedIndex];
+            active_table = comboBox1.SelectedIndex;
         }
 
         private void персоналToolStripMenuItem_Click(object sender, EventArgs e)
@@ -125,6 +117,11 @@ namespace WindowsFormsApplication1
         private void комплектуючіToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = db.ds.Tables["component"];
+        }
+
+        private void вихідToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
@@ -144,7 +141,7 @@ public class Work_DB
                 using (connection = new SQLiteConnection("Data source=autobase.db"))
                 {
                     connection.Open();                    
-                    da = new SQLiteDataAdapter("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;", connection);
+                    da = new SQLiteDataAdapter("SELECT name FROM sqlite_master WHERE type='table';", connection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     for (int i = 0; i < dt.Rows.Count; i++)
@@ -194,11 +191,35 @@ public class Work_DB
             {
                 connection.Open();
                 da = new SQLiteDataAdapter("SELECT * FROM " + table_name, connection);
+                ds.Tables[table_name].Rows.Clear();
+                ds.Tables[table_name].Columns.Clear();
                 da.Fill(ds, table_name);
                 connection.Close();
             }
         }
         catch {return false; }
+        return true;
+    }
+
+    public void InsertRec(string table_name, string id)
+    {
+
+    }
+
+    public void ModifyRec(string table_name, string id)
+    {
+
+    }
+
+    public bool DeleteRec(string table_name, string id)
+    {
+        try
+        {
+            string command = "DELETE FROM " + table_name + " WHERE id='" + id + "';";
+            if (ExecuteCommand(command) == false) { return false; }
+            if (renew_table(table_name) == false) { return false; }
+        }
+        catch { return false; }
         return true;
     }
 }
