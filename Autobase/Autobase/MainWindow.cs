@@ -62,6 +62,7 @@ namespace WindowsFormsApplication1
                     {
                         ins_data.Text = "Внесення інформації по запчастинах";
                         ins_data.table_name = "components";
+                        MessageBox.Show("Не готове");
                     }
             ins_data.fm = this;
             ins_data.ShowDialog();
@@ -130,12 +131,13 @@ namespace WindowsFormsApplication1
                     mod_data.dateTimePicker3.Text = dataGridView1.SelectedRows[0].Cells["create_date"].Value.ToString();
 
                 }
-           /*else
+           else
                     if (db.ds.Tables[active_table].TableName == "component")
                     {
-                        ins_data.Text = "Внесення інформації по запчастинах";
-                        ins_data.table_name = "components";
-                    }*/
+                        mod_data.Text = "Внесення інформації по запчастинах";
+                        mod_data.table_name = "components";
+                        MessageBox.Show("Не готове");
+                    }
             mod_data.fm = this;
             mod_data.ShowDialog();     
         }        

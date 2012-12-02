@@ -57,10 +57,19 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.Назва = new System.Windows.Forms.Label();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -333,11 +342,84 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.textBox10);
+            this.panel3.Controls.Add(this.label15);
+            this.panel3.Controls.Add(this.textBox9);
+            this.panel3.Controls.Add(this.label14);
+            this.panel3.Controls.Add(this.textBox8);
+            this.panel3.Controls.Add(this.Назва);
+            this.panel3.Controls.Add(this.button3);
+            this.panel3.Location = new System.Drawing.Point(12, 12);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(378, 225);
+            this.panel3.TabIndex = 18;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(126, 189);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(146, 28);
+            this.button3.TabIndex = 0;
+            this.button3.Text = "Зберегти значеня";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // Назва
+            // 
+            this.Назва.AutoSize = true;
+            this.Назва.Location = new System.Drawing.Point(9, 35);
+            this.Назва.Name = "Назва";
+            this.Назва.Size = new System.Drawing.Size(41, 13);
+            this.Назва.TabIndex = 1;
+            this.Назва.Text = "label13";
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(126, 27);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(235, 20);
+            this.textBox8.TabIndex = 2;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(9, 72);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(41, 13);
+            this.label14.TabIndex = 3;
+            this.label14.Text = "label14";
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(126, 63);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(111, 20);
+            this.textBox9.TabIndex = 4;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(12, 107);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(41, 13);
+            this.label15.TabIndex = 5;
+            this.label15.Text = "label15";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(126, 104);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(138, 20);
+            this.textBox10.TabIndex = 6;
+            // 
             // ModifyData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(404, 241);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -351,6 +433,8 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -386,5 +470,13 @@
         public System.Windows.Forms.TextBox textBox6;
         public System.Windows.Forms.TextBox textBox5;
         public System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.Label Назва;
+        private System.Windows.Forms.Button button3;
     }
 }

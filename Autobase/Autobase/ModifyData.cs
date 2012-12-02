@@ -33,6 +33,8 @@ namespace WindowsFormsApplication1
             panel1.Enabled = false;
             panel2.Visible = false;
             panel2.Enabled = false;
+            panel3.Visible = false;
+            panel3.Enabled = false;
             this.Close();
         }
         
@@ -77,6 +79,11 @@ namespace WindowsFormsApplication1
             if (fm.db.ExecuteCommand(commamd) == true && fm.db.renew_table(table_name) == true) { MessageBox.Show(mess); }
             else MessageBox.Show("Помилка при виконанні операції");
             closewindow();           
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
        
     }
