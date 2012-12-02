@@ -38,13 +38,32 @@ namespace WindowsFormsApplication1
         private void button2_Click(object sender, EventArgs e)
         {
             ModifyData ins_data = new ModifyData();
-            ins_data.Size=new System.Drawing.Size(485,355);
-            ins_data.panel1.Visible = true;
-            ins_data.panel1.Enabled = true;
-            ins_data.Text = "Внесення інформації про працівника";
+            ins_data.operate = "insert";
+            if (db.ds.Tables[active_table].TableName == "personal")
+            {
+                ins_data.Text = "Внесення інформації про працівника";
+                ins_data.table_name = "personal";                
+                ins_data.Size = new System.Drawing.Size(495, 355);  
+                ins_data.panel1.Visible = true;
+                ins_data.panel1.Enabled = true;
+
+            }
+            else
+                if (db.ds.Tables[active_table].TableName == "model")
+                {
+                    ins_data.Text = "Внесення інформації по новому автомобілю";
+                    ins_data.table_name = "model";
+                    ins_data.Size = new System.Drawing.Size(395, 270);
+                    ins_data.panel2.Visible = true;
+                    ins_data.panel2.Enabled = true;                    
+                }
+           else
+                    if (db.ds.Tables[active_table].TableName == "component")
+                    {
+                        ins_data.Text = "Внесення інформації по запчастинах";
+                        ins_data.table_name = "components";
+                    }
             ins_data.fm = this;
-            ins_data.operate=1;
-            ins_data.table_name = "personal";
             ins_data.ShowDialog();
         }
 
@@ -52,7 +71,7 @@ namespace WindowsFormsApplication1
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Виберіть значення для зміни");
+                MessageBox.Show("Виберіть значення для видалення");
                 return;
             }
             string index = dataGridView1.SelectedRows[0].Cells["id"].Value.ToString();
@@ -68,34 +87,57 @@ namespace WindowsFormsApplication1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count != 0)
-            {
-                try
-                {
-                    ModifyData ins_data = new ModifyData();
-                    ins_data.Text = "Модифікація інформації про працівника";
-                    ins_data.panel1.Visible = true;
-                    ins_data.panel1.Enabled = true;
-                    ins_data.fm = this;
-                    ins_data.table_name = comboBox1.SelectedItem.ToString();
-                    ins_data.operate = 2;
-                    ins_data.id = dataGridView1.SelectedRows[0].Cells["id"].Value.ToString();
-                    //Ініціалізація полів;                    
-                    ins_data.textBox1.Text = dataGridView1.SelectedRows[0].Cells["pib"].Value.ToString();
-                    ins_data.textBox2.Text = dataGridView1.SelectedRows[0].Cells["position"].Value.ToString();
-                    ins_data.textBox3.Text = dataGridView1.SelectedRows[0].Cells["telephon"].Value.ToString();
-                    ins_data.numericUpDown1.Value = Convert.ToDecimal(dataGridView1.SelectedRows[0].Cells["salary"].Value);
-                    ins_data.dateTimePicker1.Value = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells["birth"].Value);
-                    ins_data.dateTimePicker2.Value = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells["date_work"].Value);
-                    ins_data.ShowDialog();
-                 }
-                catch (Exception ex) { MessageBox.Show("Сталась помилка"+ex.ToString()); }
-            }
-            else
+            if (dataGridView1.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Виберіть значення для зміни");
+                return;
             }
-           
+            ModifyData mod_data = new ModifyData();
+            mod_data.operate = "modify";
+            if (db.ds.Tables[active_table].TableName == "personal")
+            {
+                mod_data.Text = "Модифікація інформації про працівника";
+                mod_data.Size = new System.Drawing.Size(495, 355); 
+                mod_data.panel1.Visible = true;
+                mod_data.panel1.Enabled = true;
+                mod_data.fm = this;
+                mod_data.table_name = comboBox1.SelectedItem.ToString();
+                mod_data.id = dataGridView1.SelectedRows[0].Cells["id"].Value.ToString();
+                //Ініціалізація полів;        
+                mod_data.textBox1.Text = dataGridView1.SelectedRows[0].Cells["pib"].Value.ToString();
+                mod_data.textBox2.Text = dataGridView1.SelectedRows[0].Cells["position"].Value.ToString();
+                mod_data.textBox3.Text = dataGridView1.SelectedRows[0].Cells["telephon"].Value.ToString();
+                mod_data.numericUpDown1.Value = Convert.ToDecimal(dataGridView1.SelectedRows[0].Cells["salary"].Value);
+                mod_data.dateTimePicker1.Value = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells["birth"].Value);
+                mod_data.dateTimePicker2.Value = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells["date_work"].Value);   
+                mod_data.panel1.Visible = true;
+                mod_data.panel1.Enabled = true;
+            }
+            else
+                if (db.ds.Tables[active_table].TableName == "model")
+                {
+                    mod_data.Text = "Внесення інформації по новому автомобілю";
+                    mod_data.table_name = "model";
+                    mod_data.Size = new System.Drawing.Size(395, 270);
+                    mod_data.panel2.Visible = true;
+                    mod_data.panel2.Enabled = true;
+                    mod_data.table_name = comboBox1.SelectedItem.ToString();
+                    mod_data.id = dataGridView1.SelectedRows[0].Cells["id"].Value.ToString();
+                    mod_data.textBox4.Text = dataGridView1.SelectedRows[0].Cells["model"].Value.ToString();
+                    mod_data.textBox5.Text = dataGridView1.SelectedRows[0].Cells["type"].Value.ToString();
+                    mod_data.textBox6.Text = dataGridView1.SelectedRows[0].Cells["number"].Value.ToString();
+                    mod_data.textBox7.Text = dataGridView1.SelectedRows[0].Cells["driver"].Value.ToString();
+                    mod_data.dateTimePicker3.Text = dataGridView1.SelectedRows[0].Cells["create_date"].Value.ToString();
+
+                }
+           /*else
+                    if (db.ds.Tables[active_table].TableName == "component")
+                    {
+                        ins_data.Text = "Внесення інформації по запчастинах";
+                        ins_data.table_name = "components";
+                    }*/
+            mod_data.fm = this;
+            mod_data.ShowDialog();     
         }        
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -179,7 +221,7 @@ public class Work_DB
                 connection.Close();
             }
         }
-        catch { return false; }
+        catch (Exception ex) { MessageBox.Show(ex.ToString()); return false; }
         return true;
     }
 

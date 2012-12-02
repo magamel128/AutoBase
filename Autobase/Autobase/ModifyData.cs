@@ -18,7 +18,7 @@ namespace WindowsFormsApplication1
         }
 
         public MainWindow fm;
-        public int operate;
+        public string operate;
         public string id="";
         public string table_name="";
         
@@ -38,24 +38,46 @@ namespace WindowsFormsApplication1
         
         private void button1_Click(object sender, EventArgs e)
         {
-            string op = "";
+            string commamd = "";
             string mess = "";
-            if (operate==1)
+            if (operate=="insert")
             {
-                op = "INSERT INTO '"+ table_name+"' ('pib', 'position','birth', 'date_work', 'telephon','salary') VALUES ('" + textBox1.Text +
+                commamd = "INSERT INTO '" + table_name + "' ('pib', 'position','birth', 'date_work', 'telephon','salary') VALUES ('" + textBox1.Text +
                  "','" + textBox2.Text + "','" + dateTimePicker1.Text + "','" + dateTimePicker2.Text + "','" + textBox3.Text +
                  "','" + numericUpDown1.Value + "');";
                 mess="Інформація успішно занесена";
             }
-            if (operate==2)
+            if (operate=="modify")
             {
-                op = "UPDATE '"+table_name+"' set pib='" + textBox1.Text + "', position='"+textBox2.Text+"', birth='"+dateTimePicker1.Text+"', date_work='"+dateTimePicker2.Text+
+                commamd = "UPDATE '" + table_name + "' set pib='" + textBox1.Text + "', position='" + textBox2.Text + "', birth='" + dateTimePicker1.Text + "', date_work='" + dateTimePicker2.Text +
                     "', telephon='"+textBox3.Text +"', salary='"+numericUpDown1.Value+"' WHERE id="+id;
                 mess ="Інформація успішно обновлена";
             }
-            if (fm.db.ExecuteCommand(op) == true && fm.db.renew_table(table_name) == true) { MessageBox.Show(mess); }
+            if (fm.db.ExecuteCommand(commamd) == true && fm.db.renew_table(table_name) == true) { MessageBox.Show(mess); }
             else MessageBox.Show("Помилка при виконанні операції");
             closewindow();           
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string commamd = "";
+            string mess = "";
+            if (operate=="insert")
+            {
+                commamd = "INSERT INTO '" + table_name + "' ('type', 'create_date','number', 'model','driver') VALUES ('" + textBox5.Text +
+                 "','" + dateTimePicker3.Text+ "','" + textBox6.Text + "','" +textBox4.Text + "','" + textBox7.Text + "');";
+                mess="Інформація успішно занесена";
+            }
+            if (operate=="modify")
+            {
+                commamd = "UPDATE '" + table_name + "' set type='" + textBox5.Text + "', create_date='" + dateTimePicker3.Text + "', number='" + textBox6.Text +
+                    "', model='" + textBox4.Text + "', driver='" + textBox7.Text + "' WHERE id=" + id;
+                mess ="Інформація успішно обновлена";
+            }
+            if (fm.db.ExecuteCommand(commamd) == true && fm.db.renew_table(table_name) == true) { MessageBox.Show(mess); }
+            else MessageBox.Show("Помилка при виконанні операції");
+            closewindow();           
+        }
+       
     }
 }
